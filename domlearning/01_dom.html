@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+    <style>
+        .bg-class{
+            background-color: black;
+            color: rgb(113, 102, 102);
+        }
+    </style>
+</head>
+<body class="bg-class">
+    <div>
+        <h1 class="heading1">This is your document</h1>
+        <p id="hi">Hello , World!</p>
+        <p id = "demo">Demo</p>
+        <p id="title" class="para">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis ex,
+            sequi harum architecto cum amet. Doloribus, maiores illo, 
+            cum voluptas perspiciatis adipisci animi repellendus tenetur
+            ratione att eaque, culpa dolore!
+        </p>
+    </div>
+</body>
+<script>
+    document.getElementById("title").innerHTML = "This is an intro to document object model."
+    const element = document.getElementById("hi");
+    element.innerHTML = "Hello , Saif"
+    document.getElementById("demo").innerHTML = " Date: " + Date();
+</script>
+</html>
