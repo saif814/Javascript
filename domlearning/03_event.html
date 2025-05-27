@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+    <style>
+        .button {
+            cursor: pointer;
+        }
+        div{
+            border:1px solid black;
+            border-radius: 3px;
+            height: 60px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body onload = "checkCookies()">
+    <h1 class="button" onclick="change(this)">Welcome to meta </h1>
+    name : <input type = "test" id = "case" oninput = "touppercase()">
+    <button onclick="displayDate(this)">Show Date</button>
+    <div id="d1">
+        <p>Click green</p>
+    </div>
+    <div id="d2">
+        <p>Click green</p>
+    </div>
+    <div id="d3">
+        <p>Click green</p>
+    </div>
+    <div id="d4">
+        <p>Click green</p>
+    </div>
+</body>
+<script>
+    function change(id){
+        id.innerHTML = "Wlcome to Facebook";
+    }
+
+    function displayDate(id){
+        id.outerHTML= Date();
+    }
+
+    function checkCookies(){
+        if(navigator.cookiesEnabled){
+            alert("Cookies are enables")
+        }else{
+            alert("cookies are unenables")
+        }
+    }
+
+    function touppercase(){
+        x = document.getElementById("case")
+        x.value = x.value.toUpperCase();
+    }
+
+    document.getElementById("d1").addEventListener("click", function(){
+        event.stopPropagation();
+        document.body.style.backgroundColor = "green";
+    })
+
+    document.getElementById("d2").addEventListener("click", function(){
+        event.stopPropagation();
+        document.body.style.backgroundColor = "blue";
+    })
+
+    document.getElementById("d3").addEventListener("click", function(){
+        event.stopPropagation();
+        document.body.style.backgroundColor = "red";
+    })
+
+    document.getElementById("d4").addEventListener("click", function(){
+        event.stopPropagation();
+        document.body.style.backgroundColor = "yellow";
+    })
+
+    document.addEventListener("click", function(event){
+        if(event.target == document.body){
+            document.body.style.backgroundColor = "white";
+        }
+        });
+
+</script>
+</html>
