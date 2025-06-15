@@ -11,6 +11,6 @@ async function main() {
     const result = await fetchData();
     console.log(result);
     console.log("end");
-}
+}   
 
 main();
