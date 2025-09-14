@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Catch the Ball Game</title>
+  <style>
+    body {
+      margin: 0;
+      background: #f0f0f0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    #gameArea {
+      width: 400px;
+      height: 500px;
+      background: #fff;
+      border: 2px solid #333;
+      margin: 20px auto;
+      position: relative;
+      overflow: hidden;
+    }
+    #basket {
+      width: 80px;
+      height: 20px;
+      background: #333;
+      position: absolute;
+      bottom: 10px;
+      left: 160px;
+    }
+    #ball {
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 190px;
+    }
+    #score {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Catch the Ball 🎮</h2>
+  <div id="gameArea">
+    <div id="basket"></div>
+    <div id="ball"></div>
+  </div>
+  <div id="score">Score: 0</div>
+
+  <script>
+    const basket = document.getElementById("basket");
+    const ball = document.getElementById("ball");
+    const scoreDisplay = document.getElementById("score");
+
+    let score = 0;
+    let basketX = 160;
+    let ballY = 0;
+    let ballX = 190;
+    let gameInterval;
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft" && basketX > 0) {
+        basketX -= 20;
+      } else if (event.key === "ArrowRight" && basketX < 320) {
+        basketX += 20;
+      }
+      basket.style.left = basketX + "px";
+    });
+
+    function dropBall() {
+      ballY += 8; 
+      ball.style.top = ballY + "px";
+
+      if (ballY >= 470 && ballX > basketX && ballX < basketX + 80) {
+        score++;
+        scoreDisplay.textContent = "Score: " + score;
+        resetBall();
+      }
+
+      if (ballY > 500) {
+        clearInterval(gameInterval);
+        alert("Game Over! Final Score: " + score);
+      }
+    }
+
+    function resetBall() {
+      ballY = 0;
+      ballX = Math.floor(Math.random() * 380);
+      ball.style.left = ballX + "px";
+      ball.style.top = ballY + "px";
+    }
+
+    function startGame() {
+      resetBall();
+      gameInterval = setInterval(dropBall, 50);
+    }
+
+    startGame();
+  </script>
+</body>
+</html>
