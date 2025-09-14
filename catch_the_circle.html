@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catch the Circle Game</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+    }
+
+    #gameArea {
+      position: relative;
+      width: 500px;
+      height: 400px;
+      margin: 20px auto;
+      border: 2px solid #333;
+      background-color: #e6f7ff;
+      overflow: hidden;
+    }
+
+    #circle {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: #ff4d4d;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    h1 {
+      margin-top: 20px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Catch the Circle!</h1>
+  <p>Score: <span id="score">0</span></p>
+  <div id="gameArea">
+    <div id="circle"></div>
+  </div>
+
+  <script>
+    const circle = document.getElementById('circle');
+    const scoreDisplay = document.getElementById('score');
+    const gameArea = document.getElementById('gameArea');
+
+    let score = 0;
+
+    function moveCircle() {
+      const maxX = gameArea.clientWidth - circle.offsetWidth;
+      const maxY = gameArea.clientHeight - circle.offsetHeight;
+      
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      circle.style.left = randomX + 'px';
+      circle.style.top = randomY + 'px';
+    }
+
+    circle.addEventListener('click', () => {
+      score++;
+      scoreDisplay.textContent = score;
+      moveCircle();
+    });
+
+    moveCircle();
+    setInterval(moveCircle, 2000);
+  </script>
+</body>
+</html>
